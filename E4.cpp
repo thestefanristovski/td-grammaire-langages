@@ -29,7 +29,7 @@ bool E4::transition(Automate *automate, Symbole *s) {
         printTransition("INT","decalage","etat3");
         automate->decalage(s, new E3("etat3"));
         break;
-      case OUVREPAR:
+      case OPENPAR:
         printTransition("OPENPAR","decalage","etat2");
         automate->decalage(s, new E2("etat2"));
         break;

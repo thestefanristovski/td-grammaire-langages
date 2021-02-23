@@ -1,5 +1,5 @@
 //
-// Created by Olivier VICENTE on 14/02/2017.
+// Stefan Ristovski & Aydin Akaydin
 //
 
 #include "Etat.h"

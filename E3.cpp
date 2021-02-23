@@ -3,7 +3,6 @@
 //
 
 #include "E3.h"
-#include "Expr.h"
 #include "Automate.h"
 #include "Symbole.h"
 

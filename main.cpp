@@ -1,18 +1,17 @@
 #include <iostream>
-#include "lexer.h"
+#include "Lexer.h"
+#include "Automate.h"
+#include <string>
 
-
-int main(void) {
-   string chaine("(1+34)*123");
-
-   Lexer l(chaine);
-
-   Symbole * s;
-   while(*(s=l.Consulter())!=FIN) {
-      s->Affiche();
-      cout<<endl;
-      l.Avancer();
-   }
-   return 0;
+int main() {
+    string chaine;
+  
+    std::cout << "Enter your query:" << std::endl;
+    std::getline(std::cin,chaine);
+    std::cout << "Calculating: "+chaine << std::endl;
+    
+    Automate automate(chaine);
+    automate.eval();
+    
+    return 0;
 }
-
