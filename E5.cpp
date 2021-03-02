@@ -1,5 +1,5 @@
 //
-// Created by Olivier VICENTE on 16/02/2017.
+// Stefan Ristovski & Aydin Akaydin
 //
 
 #include "E5.h"
@@ -26,16 +26,16 @@ bool E5::transition(Automate *automate, Symbole *s) {
     
     switch(*s) {
       case INT:
-        printTransition("INT","decalage","etat3");
-        automate->decalage(s, new E3("etat3"));
+        cout<<"INT; decalage; state3";
+        automate->decalage(s, new E3("state3"));
         break;
       case OPENPAR:
-        printTransition("OPENPAR","decalage","etat2");
-        automate->decalage(s, new E2("etat2"));
+        cout<<"OPENPAR; decalage; state2";
+        automate->decalage(s, new E2("state2"));
         break;
       case EXPR:
-        printTransition("EXPR","decalage","etat8");
-        automate->decalage(s, new E8("etat8"));
+        cout<<"EXPR; decalage; state8";
+        automate->decalage(s, new E8("state8"));
         break;
       default:
         this->printUnknown();

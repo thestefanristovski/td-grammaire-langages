@@ -1,9 +1,6 @@
 //
-// Created by Olivier VICENTE on 14/02/2017.
+// Stefan Ristovski & Aydin Akaydin
 //
-
-#ifndef GL_TD2_AUTOMATE_H
-#define GL_TD2_AUTOMATE_H
 
 #include <vector>
 #include "Symbole.h"
@@ -24,11 +21,9 @@ class Automate {
   public:
     Automate(string chaine);
     ~Automate();
-    void eval();
+    void run();
     void decalage(Symbole * s, Etat * e);
     void reduction(int n, Symbole * s);
     int calcul(vector<Symbole *> tab);
 };
 
-
-#endif //GL_TD2_AUTOMATE_H

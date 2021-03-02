@@ -26,15 +26,15 @@ bool E1::transition(Automate *automate, Symbole *s) {
     
     switch(*s) {
       case PLUS:
-        printTransition("PLUS","decalage","etat4");
-        automate->decalage(s, new E4("etat4"));
+        cout<<"PLUS; decalage; state4";
+        automate->decalage(s, new E4("state4"));
         break;
       case MULT:
-        printTransition("MULT","decalage","etat5");
+        cout<<"MULT; decalage; state5";
         automate->decalage(s, new E5("etat5"));
         break;
       case FIN:
-        printTransition("FIN","accepter"," ");
+        cout<<"FIN; accept; ";
         return false;
         break;
       default:

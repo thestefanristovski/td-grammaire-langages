@@ -1,13 +1,14 @@
 #include "lexer.h"
+#include <iostream>
 
 Symbole * Lexer::Consulter() {
    if (!tampon) {
-
+       
       if (tete==flux.length())
          tampon = new Symbole(FIN);
       else
       {
-
+          cout << "Symbol is: " << flux[tete] << endl;
          switch (flux[tete]) {
             case '(':
                tampon = new Symbole(OPENPAR);
@@ -49,3 +50,21 @@ void Lexer::Avancer() {
    tampon = nullptr;
 }
 
+void Lexer::putSymbol(Symbole* s) {
+
+    switch (*s) {
+    case PLUS:
+        flux = '+' + flux;
+        break;
+    case MULT:
+        flux = '*' + flux;
+        break;
+    case CLOSEPAR:
+        flux = ')' + flux;
+        break;
+    case OPENPAR:
+        flux = '(' + flux;
+        break;
+    }
+
+}

@@ -2,10 +2,6 @@
 // Stefan Ristovski & Aydin Akaydin
 //
 
-#ifndef GL_E0_H
-#define GL_E0_H
-
-
 #include "Etat.h"
 #include "E1.h"
 #include "E2.h"
@@ -21,5 +17,3 @@ class E0 : public Etat {
     bool transition(Automate *automate, Symbole *s);
 };
 
-
-#endif //GL_E0_H

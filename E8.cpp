@@ -24,19 +24,19 @@ bool E8::transition(Automate *automate, Symbole *s) {
     
     switch(*s) {
       case PLUS:
-        printTransition("PLUS","réduction","3");
+        cout<<"PLUS; réduction; 3";
         automate->reduction(3, new Symbole(2));
         break;
       case MULT:
-        printTransition("MULT","réduction","3");
+        cout<<"MULT; réduction; 3";
         automate->reduction(3, new Symbole(3));
         break;
       case CLOSEPAR:
-        printTransition("CLOSEPAR","réduction","3");
+        cout<<"CLOSEPAR; réduction; 3";
         automate->reduction(3, new Symbole(1));
         break;
       case FIN:
-        printTransition("FIN","réduction","3");
+        cout<<"FIN; réduction; 3";
         automate->reduction(3, new Symbole(5));
         break;
       default:

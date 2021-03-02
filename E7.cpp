@@ -25,19 +25,19 @@ bool E7::transition(Automate *automate, Symbole *s) {
     
     switch(*s) {
       case PLUS:
-        printTransition("PLUS","reduction","3");
+        cout<<"PLUS; reduction; 3";
         automate->reduction(3,new Symbole(2));
         break;
       case MULT:
-        printTransition("MULT","decalage","etat5");
-        automate->decalage(s, new E5("etat5"));
+        cout<<"MULT; decalage; state5";
+        automate->decalage(s, new E5("state5"));
         break;
       case CLOSEPAR:
-        printTransition("CLOSEPAR","reduction","3");
+        cout<<"CLOSEPAR; reduction; 3";
         automate->reduction(3, new Symbole(1));
         break;
       case FIN:
-        printTransition("FIN","reduction","3");
+        cout<<"FIN; reduction; 3";
         automate->reduction(3, new Symbole(5));
         break;
       default:

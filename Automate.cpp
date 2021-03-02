@@ -10,11 +10,11 @@
 Automate::Automate(string chaine) {
   lexer = new Lexer(chaine);
   
-  Etat *etat0 = new E0("etat0");
+  Etat *etat0 = new E0("state0");
   statestack.push_back(etat0);
 }
 
-void Automate::eval() 
+void Automate::run() 
 {
   bool retourTransition = true;
   while(retourTransition)
@@ -24,7 +24,7 @@ void Automate::eval()
     retourTransition = statestack.back()->transition(this, symbole);
   }
   
-  cout << "Fin de la lecture" << endl;
+  cout << "End of parsing" << endl;
   for(int i=0;i<symbolstack.size();++i)
     cout << symbolstack[i]->eval() << endl;
 }

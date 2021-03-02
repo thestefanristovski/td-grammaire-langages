@@ -25,16 +25,16 @@ bool E2::transition(Automate *automate, Symbole *s) {
     
     switch(*s) {
       case INT:
-        printTransition("INT","décalage","etat3");
-        automate->decalage(s, new E3("etat3"));
+        cout<<"INT; décalage; state3";
+        automate->decalage(s, new E3("state3"));
         break;
       case OPENPAR:
-        printTransition("OPENPAR","décalage","etat2");
-        automate->decalage(s, new E2("etat2"));
+        cout<<"OPENPAR; décalage; state2";
+        automate->decalage(s, new E2("state2"));
         break;
       case EXPR:
-        printTransition("EXPR","décalage","etat6");
-        automate->decalage(s, new E6("etat6"));
+        cout<<"EXPR; décalage; state6";
+        automate->decalage(s, new E6("state6"));
         break;
       default:
         this->printUnknown();

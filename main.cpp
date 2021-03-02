@@ -3,15 +3,17 @@
 #include "Automate.h"
 #include <string>
 
+using namespace std;
+
 int main() {
-    string chaine;
+    string query;
   
-    std::cout << "Enter your query:" << std::endl;
-    std::getline(std::cin,chaine);
-    std::cout << "Calculating: "+chaine << std::endl;
+    cout << "Enter your query:" << endl;
+    getline(std::cin,query);
+    cout << "Calculating: "+query << endl;
     
-    Automate automate(chaine);
-    automate.eval();
+    Automate automate(query);
+    automate.run();
     
     return 0;
 }

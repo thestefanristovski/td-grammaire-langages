@@ -6,10 +6,6 @@
 
 Etat::Etat(const string &name) : name(name) {}
 
-void Etat::printTransition(string symbole, string action, string etat) {
-  cout << "symbol:" << symbole << " detected, " << action << " to " << etat << endl;
-}
-
 Etat::~Etat() {
 
 }
