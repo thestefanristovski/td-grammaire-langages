@@ -35,6 +35,7 @@ void Automate::run()
 }
 
 void Automate::decalage(Symbole * s, Etat * e) {
+  cout << endl;
   //save the associated symbol
   symbols.push_back(s);
   //add the new state to the stack
@@ -43,53 +44,37 @@ void Automate::decalage(Symbole * s, Etat * e) {
 
 void Automate::reduction(int n, Symbole * s) {
   
+  cout << endl;
+
   vector<Symbole *> poped;
-  
+  int val;
+
   //for the number of states to remove
   for(int i=0;i<n;i++) {
+
     //remove the last state in stack
     delete(states.back());
     states.pop_back();
     //remove last symbol from stack and store it
-    poped.push_back(symbols.back());
+    if(n == 1){
+      val = symbols.back()->eval();
+    } else{
+      poped.push_back(symbols.back());
+    }
     symbols.pop_back();
   }
   
   //reverse poped symbols to get right order
-  reverse(poped.begin(), poped.end());
   //calculate value of expression
-  int val = calculate(poped);
+  if( n != 1){
+    if( *poped[1] == PLUS ) val = poped[0]->eval() + poped[2]->eval(); 
+    else if( *poped[1] == MULT  ) val = poped[0]->eval() * poped[2]->eval(); 
+    else val = poped[1]->eval();
+  } 
   
   //transition from last state in stack to the new expression
   states.back()->transition(this, new Expr(val));
   lexer->putSymbol(s);
-}
-
-int Automate::calculate(vector<Symbole *> tab) {
-  
-  switch(tab.size()) {
-      //single number
-    case 1:
-      return tab[0]->eval();
-      break;
-      //operation or parentheses: a+b, a*b, (a)
-    case 3:
-      if(*tab[0] == OPENPAR) {
-        return tab[1]->eval();
-      }
-      else if(*tab[1] == PLUS) 
-      {
-        return tab[0]->eval() + tab[2]->eval();
-      }
-      else if(*tab[1] == MULT) 
-      {
-        return tab[0]->eval() * tab[2]->eval();
-      }
-      break;
-  }
-  
-  return 0;
-  
 }
 
 Automate::~Automate() {

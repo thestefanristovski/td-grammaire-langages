@@ -23,6 +23,5 @@ class Automate {
     void run();
     void decalage(Symbole * s, Etat * e);
     void reduction(int n, Symbole * s);
-    int calculate(vector<Symbole *> tab);
 };
 
