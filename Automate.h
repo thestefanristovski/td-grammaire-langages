@@ -13,10 +13,9 @@ using namespace std;
 
 class Automate {
   protected :
-    vector<Symbole *> symbolstack;
-    vector<Etat *> statestack;
+    vector<Symbole *> symbols;
+    vector<Etat *> states;
     Lexer *lexer;
-    Symbole *reserve;
   
   public:
     Automate(string chaine);
@@ -24,6 +23,6 @@ class Automate {
     void run();
     void decalage(Symbole * s, Etat * e);
     void reduction(int n, Symbole * s);
-    int calcul(vector<Symbole *> tab);
+    int calculate(vector<Symbole *> tab);
 };
 

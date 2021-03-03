@@ -7,57 +7,72 @@
 #include "Etat.h"
 #include "E0.h"
 
-Automate::Automate(string chaine) {
-  lexer = new Lexer(chaine);
-  
-  Etat *etat0 = new E0("state0");
-  statestack.push_back(etat0);
+Automate::Automate(string query) {
+  //start up lexer
+  lexer = new Lexer(query);
+  //initialize 0 state and push in the stack
+  Etat *state0 = new E0("state0");
+  states.push_back(state0);
 }
 
 void Automate::run() 
 {
-  bool retourTransition = true;
-  while(retourTransition)
+  bool returnTransition = true;
+  //while not done with transitions
+  while(returnTransition)
   {
-    Symbole *symbole = lexer->Consulter();
+    //read next symbol (lexer)
+    Symbole *symbol = lexer->Consulter();
+    //move lexer to next symbol
     lexer->Avancer();
-    retourTransition = statestack.back()->transition(this, symbole);
+    //execute transition for last state
+    returnTransition = states.back()->transition(this, symbol);
   }
   
   cout << "End of parsing" << endl;
-  for(int i=0;i<symbolstack.size();++i)
-    cout << symbolstack[i]->eval() << endl;
+  for(int i=0;i<symbols.size();++i)
+    cout << symbols[i]->eval() << endl;
 }
 
 void Automate::decalage(Symbole * s, Etat * e) {
-  symbolstack.push_back(s);
-  statestack.push_back(e);
+  //save the associated symbol
+  symbols.push_back(s);
+  //add the new state to the stack
+  states.push_back(e);
 }
 
 void Automate::reduction(int n, Symbole * s) {
   
   vector<Symbole *> poped;
   
+  //for the number of states to remove
   for(int i=0;i<n;i++) {
-    delete(statestack.back());
-    statestack.pop_back();
-    poped.push_back(symbolstack.back());
-    symbolstack.pop_back();
+    //remove the last state in stack
+    delete(states.back());
+    states.pop_back();
+    //remove last symbol from stack and store it
+    poped.push_back(symbols.back());
+    symbols.pop_back();
   }
   
+  //reverse poped symbols to get right order
   reverse(poped.begin(), poped.end());
-  int val = calcul(poped);
+  //calculate value of expression
+  int val = calculate(poped);
   
-  statestack.back()->transition(this, new Expr(val));
+  //transition from last state in stack to the new expression
+  states.back()->transition(this, new Expr(val));
   lexer->putSymbol(s);
 }
 
-int Automate::calcul(vector<Symbole *> tab) {
+int Automate::calculate(vector<Symbole *> tab) {
   
   switch(tab.size()) {
+      //single number
     case 1:
       return tab[0]->eval();
       break;
+      //operation or parentheses: a+b, a*b, (a)
     case 3:
       if(*tab[0] == OPENPAR) {
         return tab[1]->eval();
