@@ -46,5 +46,8 @@ E8.o: E8.cpp E8.h Etat.h
 E9.o: E9.cpp E9.h Etat.h
 	g++ -c E9.cpp
 
-CLEAN:
+run: TDGL
+	./TDGL
+
+clean:
 	rm -f *.o TDGL *~
